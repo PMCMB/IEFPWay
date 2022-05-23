@@ -4,203 +4,203 @@ require $_SERVER['DOCUMENT_ROOT'] . '/database/connectDatabase.php';
 
 session_start();
 ?>
-<!DOCTYPE html>
-<html lang="en">
+    <!DOCTYPE html>
+    <html lang="en">
 
-<head>
+    <head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>IEFPWay</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>IEFPWay</title>
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+        <!-- CSS -->
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
 
-    <link rel="stylesheet" href="/pages/assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/pages/assets/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/pages/assets/css/form-elements.css">
-    <link rel="stylesheet" href="/pages/assets/css/style.css">
-    <link rel="stylesheet" href="/pages/assets/css/sendmoney.css">
-    <link href='https://fonts.googleapis.com/css?family=Share+Tech+Mono' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Signika:400' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="/pages/assets/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/pages/assets/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/pages/assets/css/form-elements.css">
+        <link rel="stylesheet" href="/pages/assets/css/style.css">
+        <link rel="stylesheet" href="/pages/assets/css/sendmoney.css">
+        <link href='https://fonts.googleapis.com/css?family=Share+Tech+Mono' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Signika:400' rel='stylesheet' type='text/css'>
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
 
-    <!-- Favicon and touch icons -->
-    <link rel="shortcut icon" href="/pages/assets/ico/favicon.png">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144"
-          href="/pages/assets/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114"
-          href="/pages/assets/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72"
-          href="/pages/assets/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="/pages/assets/ico/apple-touch-icon-57-precomposed.png">
+        <!-- Favicon and touch icons -->
+        <link rel="shortcut icon" href="/pages/assets/ico/favicon.png">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144"
+              href="/pages/assets/ico/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114"
+              href="/pages/assets/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72"
+              href="/pages/assets/ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="/pages/assets/ico/apple-touch-icon-57-precomposed.png">
 
-</head>
+    </head>
 
-<body>
-<?php include("navbar.php"); ?>
+    <body>
+    <?php include("navbar.php"); ?>
 
-<!-- Top content -->
-<div class="top-content">
+    <!-- Top content -->
+    <div class="top-content">
 
-    <div class="inner-bg">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-8 col-sm-offset-2 text">
-                    <h1><strong>IEFPWay</strong> Send Money</h1>
-                    <div class="description">
+        <div class="inner-bg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-8 col-sm-offset-2 text">
+                        <h1><strong>IEFPWay</strong> Send Money</h1>
+                        <div class="description">
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6 col-sm-offset-3 form-box">
-                    <div class="form-top">
-                        <div class="form-top-left">
-                            <p>Send money to your friends</p>
+                <div class="row">
+                    <div class="col-sm-6 col-sm-offset-3 form-box">
+                        <div class="form-top">
+                            <div class="form-top-left">
+                                <p>Send money to your friends</p>
+                            </div>
+
                         </div>
+                        <div class="form-bottom">
 
-                    </div>
-                    <div class="form-bottom">
+                            <?php
 
-                        <?php
-
-                        //Modificar as queries para que funcionem nas vossas bases de dados. Testar e ver se contêm algum erro.
+                            //Modificar as queries para que funcionem nas vossas bases de dados. Testar e ver se contêm algum erro.
 
 
-                        if (isset($_POST["form-contact"]) && isset($_POST["form-value"])) {
+                            if (isset($_POST["form-contact"]) && isset($_POST["form-value"])) {
 
-                            //VAI VERIFICAR SE O CONTACTO EXISTE
-                            $sql = $conn->prepare("SELECT * FROM User WHERE contact = ?;");
-                            $sql->bind_param("s", $_POST["form-contact"]);
-                            $sql->execute();
-                            $result = $sql->get_result();
-                            $res = mysqli_fetch_assoc($result);
-                            if (isset($res["id"])) {
-
-                                $sql = $conn->prepare("SELECT * FROM Contact WHERE id_user = ? AND id_friend=?;");
-                                $sql->bind_param("dd", $_SESSION["id"], $res["id"]);
+                                //VAI VERIFICAR SE O CONTACTO EXISTE
+                                $sql = $conn->prepare("SELECT * FROM User WHERE contact = ?;");
+                                $sql->bind_param("s", $_POST["form-contact"]);
                                 $sql->execute();
                                 $result = $sql->get_result();
                                 $res = mysqli_fetch_assoc($result);
-
-
                                 if (isset($res["id"])) {
-                                    $sql2 = $conn->prepare("SELECT * FROM Card WHERE id = (SELECT card_id FROM User WHERE id=?);");
-                                    $sql2->bind_param("d", $_SESSION["id"]);
-                                    $sql2->execute();
-                                    $result2 = $sql2->get_result();
-                                    $result2 = mysqli_fetch_assoc($result2);
 
-                                    if (floatval($result2["balance"]) >= floatval($_POST["form-value"])) {
-                                        $balance = floatval($result2["balance"]) - floatval($_POST["form-value"]);
-                                        $sql = $conn->prepare("UPDATE Card SET balance=?  WHERE id = (SELECT card_id FROM User WHERE id=?);");
-                                        $sql->bind_param("dd", $balance, $_SESSION["id"]);
-                                        $sql->execute();
+                                    $sql = $conn->prepare("SELECT * FROM Contact WHERE id_user = ? AND id_friend=?;");
+                                    $sql->bind_param("dd", $_SESSION["id"], $res["id"]);
+                                    $sql->execute();
+                                    $result = $sql->get_result();
+                                    $res = mysqli_fetch_assoc($result);
 
-                                        $sql2 = $conn->prepare("SELECT * FROM Card WHERE id = (SELECT card_number FROM User WHERE id=?);");
-                                        $sql2->bind_param("d", $res["id_friend"]);
+
+                                    if (isset($res["id"])) {
+                                        $sql2 = $conn->prepare("SELECT * FROM Card WHERE id = (SELECT card_id FROM User WHERE id=?);");
+                                        $sql2->bind_param("d", $_SESSION["id"]);
                                         $sql2->execute();
                                         $result2 = $sql2->get_result();
                                         $result2 = mysqli_fetch_assoc($result2);
-                                        $balance = floatval($result2["Balance"]) + floatval($_POST["form-value"]);
-                                        $sql = $conn->prepare("UPDATE Card SET balance=?  WHERE id = (SELECT card_number FROM User WHERE id=?);");
-                                        $sql->bind_param("dd", $balance, $res["id_friend"]);
-                                        $sql->execute();
 
-                                        ?>
-                                        <div class="alert alert-success" role="alert">
-                                            Success money sent
-                                        </div>
-                                        <?php
-                                    } else {
+                                        if (floatval($result2["balance"]) >= floatval($_POST["form-value"])) {
+                                            $balance = floatval($result2["balance"]) - floatval($_POST["form-value"]);
+                                            $sql = $conn->prepare("UPDATE Card SET balance=?  WHERE id = (SELECT card_id FROM User WHERE id=?);");
+                                            $sql->bind_param("dd", $balance, $_SESSION["id"]);
+                                            $sql->execute();
+
+                                            $sql2 = $conn->prepare("SELECT * FROM Card WHERE id = (SELECT card_id FROM User WHERE id=?);");
+                                            $sql2->bind_param("d", $res["id_friend"]);
+                                            $sql2->execute();
+                                            $result2 = $sql2->get_result();
+                                            $result2 = mysqli_fetch_assoc($result2);
+                                            $balance = floatval($result2["balance"]) + floatval($_POST["form-value"]);
+                                            $sql = $conn->prepare("UPDATE Card SET balance=?  WHERE id = (SELECT card_id FROM User WHERE id=?);");
+                                            $sql->bind_param("dd", $balance, $res["id_friend"]);
+                                            $sql->execute();
+
+                                            ?>
+                                            <div class="alert alert-success" role="alert">
+                                                Success money sent
+                                            </div>
+                                            <?php
+                                        } else {
+                                            ?>
+                                            <div class="alert alert-danger" role="alert">
+                                                Insufficient funds
+                                            </div>
+                                            <?php
+                                        }
+                                    }else{
                                         ?>
                                         <div class="alert alert-danger" role="alert">
-                                            Insufficient funds
+                                            Not friends
                                         </div>
                                         <?php
                                     }
-                                }else{
+
+
+                                } else {
                                     ?>
                                     <div class="alert alert-danger" role="alert">
-                                        Not friends
+                                        Error sending money user is not friend
                                     </div>
                                     <?php
                                 }
 
 
-                            } else {
-                                ?>
-                                <div class="alert alert-danger" role="alert">
-                                    Error sending money user is not friend
-                                </div>
-                                <?php
                             }
-
-
-                        }
-                        ?>
-
-                        <form role="form" method="post" class="login-form">
-                            <?php
-                            $sql = $conn->prepare("SELECT * FROM Card WHERE id = (SELECT card_id FROM User WHERE id=?);");
-                            $sql->bind_param("d", $_SESSION["id"]);
-                            $sql->execute();
-                            $result = $sql->get_result();
-                            $result = mysqli_fetch_assoc($result);
-                            generateCard($result["name"], $result["expirationDate"], $result["card_number"]);
                             ?>
-                            <div class="form-group">
-                                <label class="sr-only"> <strong>Available:</strong>1203€ </label>
-                            </div>
+
+                            <form role="form" method="post" class="login-form">
+                                <?php
+                                $sql = $conn->prepare("SELECT * FROM Card WHERE id = (SELECT card_id FROM User WHERE id=?);");
+                                $sql->bind_param("d", $_SESSION["id"]);
+                                $sql->execute();
+                                $result = $sql->get_result();
+                                $result = mysqli_fetch_assoc($result);
+                                generateCard($result["name"], $result["expirationDate"], $result["card_number"]);
+                                ?>
+                                <div class="form-group">
+                                    <label class="sr-only"> <strong>Available:</strong>1203€ </label>
+                                </div>
 
 
-                            <div class="form-group">
-                                <label class="sr-only" for="form-contact">Contacto</label>
-                                <input type="text"
-                                       name="form-contact" placeholder="Contact..."
-                                       class="form-username form-control" id="form-contact">
-                            </div>
-                            <div class="form-group">
-                                <label class="sr-only" for="form-value">Value</label>
-                                <input type="text" name="form-value" placeholder="Value..."
-                                       class="form-password form-control" id="form-value">
-                            </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="form-contact">Contacto</label>
+                                    <input type="text"
+                                           name="form-contact" placeholder="Contact..."
+                                           class="form-username form-control" id="form-contact">
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="form-value">Value</label>
+                                    <input type="text" name="form-value" placeholder="Value..."
+                                           class="form-password form-control" id="form-value">
+                                </div>
 
-                            <button type="submit" class="btn">Send</button>
-                        </form>
-                        <a class="btn" href="/index.php"
-                        >Back</a>
+                                <button type="submit" class="btn">Send</button>
+                            </form>
+                            <a class="btn" href="/index.php"
+                            >Back</a>
+                        </div>
                     </div>
                 </div>
+
             </div>
 
         </div>
 
     </div>
 
-</div>
 
+    <!-- Javascript -->
+    <script src="/pages/assets/js/jquery-1.11.1.min.js"></script>
+    <script src="/pages/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/pages/assets/js/jquery.backstretch.min.js"></script>
+    <script src="/pages/assets/js/scripts.js"></script>
 
-<!-- Javascript -->
-<script src="/pages/assets/js/jquery-1.11.1.min.js"></script>
-<script src="/pages/assets/bootstrap/js/bootstrap.min.js"></script>
-<script src="/pages/assets/js/jquery.backstretch.min.js"></script>
-<script src="/pages/assets/js/scripts.js"></script>
+    <!--[if lt IE 10]>
+    <script src="/pages/assets/js/placeholder.js"></script>
+    <![endif]-->
 
-<!--[if lt IE 10]>
-<script src="/pages/assets/js/placeholder.js"></script>
-<![endif]-->
+    </body>
 
-</body>
-
-</html>
+    </html>
 
 
 <?php function generateCard($name, $expirationDate, $number)
