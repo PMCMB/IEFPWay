@@ -91,7 +91,7 @@ if (isset($_SESSION["id"])) {
                         $sql->execute();
                         $result = $sql->get_result();
 
-                        //         $result = null;
+               //         $result = null;
 
                         //ERRO NA BASE DE DADOS
                         if (mysqli_error($conn)) {

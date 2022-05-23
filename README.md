@@ -1,7 +1,7 @@
 
 <h1>Projecto de programação php - IEFPWay</h1>
 
-Este é o repositório do Pedro,
+Este é o repositório do Pedro, 
 turma 21181 para o projeto IEFPWay.
 
 <h3>Formador:</h3>

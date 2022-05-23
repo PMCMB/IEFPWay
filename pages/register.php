@@ -1,6 +1,7 @@
 <?php
 
-require $_SERVER['DOCUMENT_ROOT'] . '/database/connectDatabase.php';
+
+require("../database/connectDatabase.php");
 
 ?>
 <!DOCTYPE html>
@@ -72,7 +73,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/database/connectDatabase.php';
                     //VERIFICA TODOS OS CAMPOS
 
                     if( isset($_POST["form-username"]) && isset($_POST["form-email"]) && isset($_POST["form-contact"]) && isset($_POST["form-password"]) && isset($_POST["form-confirm-password"])
-                        && isset($_POST["form-card-number"])  && isset($_POST["form-card-name"])  && isset($_POST["form-card-ccv"])  && isset($_POST["form-card-expiration"])
+                        && isset($_POST["form-card-number"])  && isset($_POST["form-card-name"])  && isset($_POST["form-card-csv"])  && isset($_POST["form-card-expiration"])
                     ){
 
 
@@ -91,7 +92,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/database/connectDatabase.php';
 
                             //Query para inserir o cartao e obter o id desse cartao
                             $sql = $conn->prepare("INSERT INTO card(name,ccv,card_number,expirationDate) VALUES (?,?,?,?); ");
-                            $sql->bind_param("sdss", $_POST["form-card-name"], $_POST["form-card-ccv"], $_POST["form-card-number"],$_POST["form-card-expiration"]);
+                            $sql->bind_param("sdss", $_POST["form-card-name"], $_POST["form-card-csv"], $_POST["form-card-number"],$_POST["form-card-expiration"]);
                             $sql->execute();
                             $cardId = $conn -> insert_id;//ultimo id inserido na base de dados
 
@@ -168,7 +169,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/database/connectDatabase.php';
                                                 <div class="form-group"> <label><span class="hidden-xs">EXPIRATION</span><span class="visible-xs-inline">EXP</span> DATE</label> <input type="text" class="form-control" id="form-card-expiration" name="form-card-expiration" placeholder="MM / YY" required/> </div>
                                             </div>
                                             <div class="col-xs-5 col-md-5 pull-right">
-                                                <div class="form-group"> <label>CV CODE</label> <input type="text" class="form-control" placeholder="CVC"  id="form-card-ccv" name="form-card-ccv" required/> </div>
+                                                <div class="form-group"> <label>CV CODE</label> <input type="text" class="form-control" placeholder="CVC"  id="form-card-csv" name="form-card-csv" required/> </div>
                                             </div>
                                         </div>
                                         <div class="row">

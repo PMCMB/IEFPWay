@@ -1,5 +1,6 @@
 <?php
 
+
 require $_SERVER['DOCUMENT_ROOT'] . '/database/connectDatabase.php';
 
 session_start();
@@ -72,47 +73,57 @@ session_start();
 
                     if(isset($_POST["form-contact"])) {
 
-                    /*
-                   //COMPLETAR ->
+                        //Query para verificar se o contacto existe na base de dados
+                        $sql = $conn->prepare("SELECT * FROM user WHERE  contact = ?");
+                        $sql->bind_param("s", $_POST["form-contact"] );
+                        $sql->execute();
+                        $result = $sql->get_result();
 
-                    //    Query para verificar se o contacto existe na base de dados */
+                        // Caso não exista mostrar:
+                        if(mysqli_num_rows($result) < 1){ ?>
 
-                    $sql = $conn->prepare("SELECT * FROM user WHERE  contact = ? ");
-                    $sql->bind_param("d", $_POST["form-contact"]);
-                    $sql->execute();
-                    $query= $sql->get_result();
+                            <div class="alert alert-danger" role="alert">
+                                User is not registered in this app
+                            </div>
 
-                    // Caso não exista mostrar:
 
-                    if(mysqli_num_rows($result) <1) {?>
+                        <?php }else{
+                            // Caso exista tentar guardar na tabela Contact o contacto com o id do user $_SESSION["id"] e o do que pesquisou antes.
 
-                        <div class="alert alert-danger" role="alert">
-                            User is not registered in this app
-                        </div>
+                            $_SESSION["id_friend"] = mysqli_fetch_assoc($result)["id"];
 
-                    <?php }else{// Caso exista tentar guardar na tabela Contact o contacto com o id do user $_SESSION["id"] e o do que pesquisou antes.
+                            $sql2 = $conn->prepare("INSERT INTO contact(id_user,id_friend) VALUES (?,?);");
+                            $sql2->bind_param("ss", $_SESSION["id"], $_SESSION["id_friend"] );
+                            $sql2->execute();
 
-                    // Saber o Id do amigo
-                    $id_amigo = mysqli_fetch_assoc($result)["id"];
 
-                    // Query para inserir amigo
-                    $sql2 = $conn->prepare("INSERT INTO contact(id_user,id_friend) VALUES (?,?)");
-                    $sql2->bind_param("dd", $_SESSION["id"], $id_amigo);
-                    $sql2->execute();
+                            //Se conseguir adicionar o amigo mostra:
+                            if (!mysqli_error($conn)) {
+                                ?>
+                                <div class="alert alert-success" role="alert">
+                                    Success - Friend added
+                                </div>
 
-                    if(mysqli_error($conn)) { // Senão conseguir mostrar: ?>
+                                <?php
 
-                        <div class="alert alert-danger" role="alert">
-                            Error adding friend
-                        </div>
+                                //RESULTADO DA BASE DE DADOS > 0 ENTAO EXIST
+                            } else{
 
-                    <?php }else{// Senão conseguir adicionar o amigo mostra:
+                                ?>
 
-                    } ?>
+                                <div class="alert alert-danger" role="alert">
+                                    Error adding friend
+                                </div>
 
-                    <div class="alert alert-danger" role="alert">
-                        Success - Friend added
-                    </div>
+                                <?php
+
+                            }
+                        }
+
+                    }
+
+                    ?>
+
 
                     <div class="form-bottom">
                         <form role="form" method="post" class="login-form">
@@ -156,5 +167,3 @@ session_start();
 </body>
 
 </html>
-
-    <?php }} ?>
